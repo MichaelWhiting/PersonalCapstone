@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct JournalEntry {
+struct JournalEntry: Hashable {
     var title: String
     var text: String
     var creationDate: Date = Date()
     var relatedGoals: [Goal]?
+    
+    func hash(into hasher: inout Hasher) {
+        // leave blank
+    }
 }

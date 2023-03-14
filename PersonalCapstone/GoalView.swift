@@ -9,23 +9,30 @@ import SwiftUI
 
 struct GoalView: View {
     let goal: Goal
-    
+
     var body: some View {
-        ZStack {
-            VStack {
-                HStack(alignment: .top, spacing: 5) {
-                    Text("\(goal.title)")
-                        .font(.title3)
-                        .bold()
-                    Spacer()
-                    Text("2/4/23")
-                }
-                HStack {
-                    Text(goal.description)
-                    Spacer()
-                    Text("47%") // Try to make this a progress bar later on
-                }
+        VStack {
+            HStack(alignment: .top, spacing: 5) {
+                Text("\(goal.title)")
+                    .font(.title3)
+                    .bold()
+                Spacer()
+                Text(getDateStr(date: goal.creationDate))
+            }
+            HStack {
+                Text(goal.description)
+                Spacer()
+                Text("\(Int(goal.progress))%")
             }
         }
+    }
+}
+
+// MARK: Functions
+extension GoalView {
+    func getDateStr(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy"
+        return dateFormatter.string(from: date)
     }
 }

@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct DetailedView: View {
+//    var goal: Goal
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            VStack(alignment: .leading, spacing: 0) {
+                List {
+                    Text("Goal Description:")
+                }
+            }
+            
+            GeometryReader { reader in
+            Color.primaryColor
+                 .frame(height: reader.safeAreaInsets.top, alignment: .top)
+                  .ignoresSafeArea()
+             }
+        }
+        .navigationBarTitle("Goal Title")
     }
 }
 
