@@ -7,30 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E67063229B641B10011A30F /* PersonalCapstoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67063129B641B10011A30F /* PersonalCapstoneApp.swift */; };
-		6E67063429B641B10011A30F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67063329B641B10011A30F /* MainView.swift */; };
-		6E67063629B641B20011A30F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E67063529B641B20011A30F /* Assets.xcassets */; };
-		6E67063929B641B20011A30F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E67063829B641B20011A30F /* Preview Assets.xcassets */; };
-		6E67064029B642C70011A30F /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67063F29B642C70011A30F /* Goal.swift */; };
-		6E67064529B6465C0011A30F /* Journal Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67064429B6465C0011A30F /* Journal Entry.swift */; };
-		6E67064729B646A30011A30F /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67064629B646A30011A30F /* Step.swift */; };
-		6E67064929B648730011A30F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67064829B648730011A30F /* Colors.swift */; };
+		6EFCBADF29B6A74200EDBB79 /* TestingBackgroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFCBADE29B6A74200EDBB79 /* TestingBackgroundApp.swift */; };
+		6EFCBAE129B6A74200EDBB79 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFCBAE029B6A74200EDBB79 /* ContentView.swift */; };
+		6EFCBAE329B6A74300EDBB79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EFCBAE229B6A74300EDBB79 /* Assets.xcassets */; };
+		6EFCBAE629B6A74300EDBB79 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EFCBAE529B6A74300EDBB79 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6E67062E29B641B10011A30F /* PersonalCapstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PersonalCapstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E67063129B641B10011A30F /* PersonalCapstoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalCapstoneApp.swift; sourceTree = "<group>"; };
-		6E67063329B641B10011A30F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		6E67063529B641B20011A30F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6E67063829B641B20011A30F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		6E67063F29B642C70011A30F /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
-		6E67064429B6465C0011A30F /* Journal Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal Entry.swift"; sourceTree = "<group>"; };
-		6E67064629B646A30011A30F /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
-		6E67064829B648730011A30F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		6EFCBADB29B6A74200EDBB79 /* TestingBackground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestingBackground.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EFCBADE29B6A74200EDBB79 /* TestingBackgroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingBackgroundApp.swift; sourceTree = "<group>"; };
+		6EFCBAE029B6A74200EDBB79 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6EFCBAE229B6A74300EDBB79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6EFCBAE529B6A74300EDBB79 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6E67062B29B641B10011A30F /* Frameworks */ = {
+		6EFCBAD829B6A74200EDBB79 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -40,105 +32,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6E67062529B641B10011A30F = {
+		6EFCBAD229B6A74200EDBB79 = {
 			isa = PBXGroup;
 			children = (
-				6E67063029B641B10011A30F /* PersonalCapstone */,
-				6E67062F29B641B10011A30F /* Products */,
+				6EFCBADD29B6A74200EDBB79 /* TestingBackground */,
+				6EFCBADC29B6A74200EDBB79 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		6E67062F29B641B10011A30F /* Products */ = {
+		6EFCBADC29B6A74200EDBB79 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6E67062E29B641B10011A30F /* PersonalCapstone.app */,
+				6EFCBADB29B6A74200EDBB79 /* TestingBackground.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6E67063029B641B10011A30F /* PersonalCapstone */ = {
+		6EFCBADD29B6A74200EDBB79 /* TestingBackground */ = {
 			isa = PBXGroup;
 			children = (
-				6E67064329B6432F0011A30F /* Extensions */,
-				6E67064229B642DB0011A30F /* Views */,
-				6E67064129B642CC0011A30F /* Models */,
-				6E67063129B641B10011A30F /* PersonalCapstoneApp.swift */,
-				6E67063529B641B20011A30F /* Assets.xcassets */,
-				6E67063729B641B20011A30F /* Preview Content */,
+				6EFCBADE29B6A74200EDBB79 /* TestingBackgroundApp.swift */,
+				6EFCBAE029B6A74200EDBB79 /* ContentView.swift */,
+				6EFCBAE229B6A74300EDBB79 /* Assets.xcassets */,
+				6EFCBAE429B6A74300EDBB79 /* Preview Content */,
 			);
-			path = PersonalCapstone;
+			path = TestingBackground;
 			sourceTree = "<group>";
 		};
-		6E67063729B641B20011A30F /* Preview Content */ = {
+		6EFCBAE429B6A74300EDBB79 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				6E67063829B641B20011A30F /* Preview Assets.xcassets */,
+				6EFCBAE529B6A74300EDBB79 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		6E67064129B642CC0011A30F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				6E67063F29B642C70011A30F /* Goal.swift */,
-				6E67064629B646A30011A30F /* Step.swift */,
-				6E67064429B6465C0011A30F /* Journal Entry.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		6E67064229B642DB0011A30F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				6E67063329B641B10011A30F /* MainView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		6E67064329B6432F0011A30F /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				6E67064829B648730011A30F /* Colors.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6E67062D29B641B10011A30F /* PersonalCapstone */ = {
+		6EFCBADA29B6A74200EDBB79 /* TestingBackground */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6E67063C29B641B20011A30F /* Build configuration list for PBXNativeTarget "PersonalCapstone" */;
+			buildConfigurationList = 6EFCBAE929B6A74300EDBB79 /* Build configuration list for PBXNativeTarget "TestingBackground" */;
 			buildPhases = (
-				6E67062A29B641B10011A30F /* Sources */,
-				6E67062B29B641B10011A30F /* Frameworks */,
-				6E67062C29B641B10011A30F /* Resources */,
+				6EFCBAD729B6A74200EDBB79 /* Sources */,
+				6EFCBAD829B6A74200EDBB79 /* Frameworks */,
+				6EFCBAD929B6A74200EDBB79 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = PersonalCapstone;
-			productName = PersonalCapstone;
-			productReference = 6E67062E29B641B10011A30F /* PersonalCapstone.app */;
+			name = TestingBackground;
+			productName = TestingBackground;
+			productReference = 6EFCBADB29B6A74200EDBB79 /* TestingBackground.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6E67062629B641B10011A30F /* Project object */ = {
+		6EFCBAD329B6A74200EDBB79 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					6E67062D29B641B10011A30F = {
+					6EFCBADA29B6A74200EDBB79 = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
-			buildConfigurationList = 6E67062929B641B10011A30F /* Build configuration list for PBXProject "PersonalCapstone" */;
+			buildConfigurationList = 6EFCBAD629B6A74200EDBB79 /* Build configuration list for PBXProject "TestingBackground" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -146,46 +110,42 @@
 				en,
 				Base,
 			);
-			mainGroup = 6E67062529B641B10011A30F;
-			productRefGroup = 6E67062F29B641B10011A30F /* Products */;
+			mainGroup = 6EFCBAD229B6A74200EDBB79;
+			productRefGroup = 6EFCBADC29B6A74200EDBB79 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6E67062D29B641B10011A30F /* PersonalCapstone */,
+				6EFCBADA29B6A74200EDBB79 /* TestingBackground */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6E67062C29B641B10011A30F /* Resources */ = {
+		6EFCBAD929B6A74200EDBB79 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E67063929B641B20011A30F /* Preview Assets.xcassets in Resources */,
-				6E67063629B641B20011A30F /* Assets.xcassets in Resources */,
+				6EFCBAE629B6A74300EDBB79 /* Preview Assets.xcassets in Resources */,
+				6EFCBAE329B6A74300EDBB79 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6E67062A29B641B10011A30F /* Sources */ = {
+		6EFCBAD729B6A74200EDBB79 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E67063429B641B10011A30F /* MainView.swift in Sources */,
-				6E67064929B648730011A30F /* Colors.swift in Sources */,
-				6E67064029B642C70011A30F /* Goal.swift in Sources */,
-				6E67064729B646A30011A30F /* Step.swift in Sources */,
-				6E67063229B641B10011A30F /* PersonalCapstoneApp.swift in Sources */,
-				6E67064529B6465C0011A30F /* Journal Entry.swift in Sources */,
+				6EFCBAE129B6A74200EDBB79 /* ContentView.swift in Sources */,
+				6EFCBADF29B6A74200EDBB79 /* TestingBackgroundApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		6E67063A29B641B20011A30F /* Debug */ = {
+		6EFCBAE729B6A74300EDBB79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -245,7 +205,7 @@
 			};
 			name = Debug;
 		};
-		6E67063B29B641B20011A30F /* Release */ = {
+		6EFCBAE829B6A74300EDBB79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -299,14 +259,14 @@
 			};
 			name = Release;
 		};
-		6E67063D29B641B20011A30F /* Debug */ = {
+		6EFCBAEA29B6A74300EDBB79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PersonalCapstone/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TestingBackground/Preview Content\"";
 				DEVELOPMENT_TEAM = 44ACMKKR6R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -320,7 +280,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = class.PersonalCapstone;
+				PRODUCT_BUNDLE_IDENTIFIER = class.TestingBackground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -328,14 +288,14 @@
 			};
 			name = Debug;
 		};
-		6E67063E29B641B20011A30F /* Release */ = {
+		6EFCBAEB29B6A74300EDBB79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PersonalCapstone/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TestingBackground/Preview Content\"";
 				DEVELOPMENT_TEAM = 44ACMKKR6R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -349,7 +309,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = class.PersonalCapstone;
+				PRODUCT_BUNDLE_IDENTIFIER = class.TestingBackground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -360,25 +320,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6E67062929B641B10011A30F /* Build configuration list for PBXProject "PersonalCapstone" */ = {
+		6EFCBAD629B6A74200EDBB79 /* Build configuration list for PBXProject "TestingBackground" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6E67063A29B641B20011A30F /* Debug */,
-				6E67063B29B641B20011A30F /* Release */,
+				6EFCBAE729B6A74300EDBB79 /* Debug */,
+				6EFCBAE829B6A74300EDBB79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6E67063C29B641B20011A30F /* Build configuration list for PBXNativeTarget "PersonalCapstone" */ = {
+		6EFCBAE929B6A74300EDBB79 /* Build configuration list for PBXNativeTarget "TestingBackground" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6E67063D29B641B20011A30F /* Debug */,
-				6E67063E29B641B20011A30F /* Release */,
+				6EFCBAEA29B6A74300EDBB79 /* Debug */,
+				6EFCBAEB29B6A74300EDBB79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 6E67062629B641B10011A30F /* Project object */;
+	rootObject = 6EFCBAD329B6A74200EDBB79 /* Project object */;
 }
