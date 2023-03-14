@@ -17,14 +17,7 @@ struct MainView: View {
         Goal(title: "Learn Swift", description: "Coding", progress: 10, isCompleted: false),
         Goal(title: "Finish Capstone", description: "Project", progress: 15, isCompleted: false),
         Goal(title: "Work on internship", description: "Job", progress: 20, isCompleted: false),
-        Goal(title: "Do chores", description: "Chores", progress: 40, isCompleted: false),
-        Goal(title: "Goal 1", description: "Test", progress: 40, isCompleted: false),
-        Goal(title: "Goal 2", description: "Test", progress: 10, isCompleted: false),
-        Goal(title: "Goal 3", description: "Test", progress: 15, isCompleted: false),
-        Goal(title: "Goal 4", description: "Test", progress: 20, isCompleted: false),
-        Goal(title: "Goal 5", description: "Test", progress: 40, isCompleted: false),
-        Goal(title: "Goal 6", description: "Test", progress: 54, isCompleted: false),
-        Goal(title: "Goal 7", description: "Test", progress: 33, isCompleted: false)
+        Goal(title: "Do chores", description: "Chores", progress: 40, isCompleted: false)
     ]
     
     @State private var journals: [JournalEntry] = [JournalEntry(title: "Journal #1", text: "This is my first journal!"), JournalEntry(title: "Journal #2", text: "This is my second journal! Testing how well a long journal text works!")
@@ -37,25 +30,39 @@ struct MainView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 0) {
                     if isShowingGoals {
-                        List($goals, id: \.self, editActions: .delete) { goal in
-                            ZStack {
-                                NavigationLink {
-                                    CreateGoalView(goals: $goals, isEditing: true, goal: goal.wrappedValue)
-                                } label: {
-                                    Text("")
+                        List() {
+                            ForEach(Array(goals.enumerated()).reversed(), id: \.offset) { i, goal in
+                                ZStack {
+                                    NavigationLink {
+                                        CreateGoalView(goals: $goals, isEditing: true, goal: goal, index: i)
+                                    } label: {
+                                        Text("")
+                                    }
+                                    .opacity(0.0)
+                                    GoalView(goal: goal)
                                 }
-                                .opacity(0.0)
-                                GoalView(goal: goal.wrappedValue)
                             }
-                        }
+                            .onDelete { i in
+                                goals.remove(atOffsets: i)
+                            }
+                         }
                         .listRowBackground(Color.secondaryColor)
                     } else {
-                        List($journals, id: \.self, editActions: .delete) { journal in
-                            JournalView(journal: journal.wrappedValue)
+                        List {
+                            ForEach(Array(journals.enumerated()).reversed(), id: \.offset) { i, entry in
+                                ZStack {
+//                                    NavigationLink {
+//                                    } label: {
+//                                        Text("")
+//                                    }
+//                                    .opacity(0.0)
+                                    JournalView(journal: entry)
+                                }
+                            }
                         }
                         .listRowBackground(Color.secondaryColor)
                     }
@@ -75,6 +82,8 @@ struct MainView: View {
                  }
             }
             .navigationTitle("Home")
+            
+            // MARK: Toolbar
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
