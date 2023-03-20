@@ -32,7 +32,9 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(spacing: 0) {
+                    Spacer()
+                        .frame(height: 1)
                     if isShowingGoals {
                         List() {
                             ForEach(Array(goals.enumerated()).reversed(), id: \.offset) { i, goal in
@@ -50,7 +52,8 @@ struct MainView: View {
                                 goals.remove(atOffsets: i)
                             }
                          }
-                        .listRowBackground(Color.secondaryColor)
+                        .background(Color.offWhite)
+                        .scrollContentBackground(.hidden)
                     } else {
                         List {
                             ForEach(Array(journals.enumerated()).reversed(), id: \.offset) { i, entry in
@@ -64,7 +67,7 @@ struct MainView: View {
                                 }
                             }
                         }
-                        .listRowBackground(Color.secondaryColor)
+                        .listRowBackground(Color.white)
                     }
                 }
                 .frame(
@@ -74,6 +77,8 @@ struct MainView: View {
                     maxHeight: .infinity,
                     alignment: .center
                 )
+                .background(Color.white)
+
                 
                 GeometryReader { reader in
                 Color.primaryColor
@@ -87,7 +92,11 @@ struct MainView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
-                        CreateGoalView(goals: $goals, isEditing: false)
+                        if isShowingGoals {
+                            CreateGoalView(goals: $goals, isEditing: false)
+                        } else {
+                            CreateJournalView(journals: $journals, goals: $goals, isEditing: false)
+                        }
                     } label: {
                         Image(systemName: "plus")
                     }
