@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct CreateGoalView: View {
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
 
     @State private var titleStr = ""
     @State private var descriptionStr = ""
     @State private var progress: Float = 0.0
-    
-    @Binding var goals: [Goal]
-    
+        
     @State var isEditing: Bool
+    @Binding var refresh: Bool
+    
     var goal: Goal?
-    var index: Int?
     
     var body: some View {
         ZStack {
@@ -96,16 +96,30 @@ extension CreateGoalView {
     func checkTextBoxes() {
         if isEditing {
             if !titleStr.isEmpty && !descriptionStr.isEmpty {
-                let newGoal = Goal(title: titleStr, description: descriptionStr, progress: Double(progress), isCompleted: false)
-                goals.remove(at: index!)
-                goals.append(newGoal)
+                goal!.title = titleStr
+                goal!.goalDescription = descriptionStr
+                goal!.progress = Double(progress)
+                if goal!.progress == 100 {
+                    goal!.isCompleted = true
+                }
+
+                refresh.toggle()
+                
+                try? moc.save()
                 
                 dismiss()
             }
         } else {
             if !titleStr.isEmpty && !descriptionStr.isEmpty {
-                let newGoal = Goal(title: titleStr, description: descriptionStr, progress: Double(progress), isCompleted: false)
-                goals.append(newGoal)
+                let newGoal = Goal(context: moc)
+                newGoal.title = titleStr
+                newGoal.goalDescription = descriptionStr
+                newGoal.progress = Double(progress)
+                newGoal.isCompleted = false
+                newGoal.creationDate = Date()
+                
+                try? moc.save()
+                
                 dismiss()
             }
         }
@@ -113,8 +127,8 @@ extension CreateGoalView {
     
     func checkGoal() {
         if let goal = goal {
-            titleStr = goal.title
-            descriptionStr = goal.description
+            titleStr = goal.title ?? ""
+            descriptionStr = goal.goalDescription ?? ""
             progress = Float(goal.progress)
         }
     }
@@ -122,6 +136,6 @@ extension CreateGoalView {
 
 struct CreateGoalView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateGoalView(goals: .constant([]), isEditing: false)
+        CreateGoalView(isEditing: false, refresh: .constant(false))
     }
 }

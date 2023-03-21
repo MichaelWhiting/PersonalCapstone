@@ -20,20 +20,18 @@ struct GoalView: View {
             }
             VStack {
                 HStack(alignment: .top, spacing: 5) {
-                    Text("\(goal.title)")
+                    Text("\(goal.title ?? "")")
                         .font(.headline)
                         .bold()
                     Spacer()
-                    Text(getDateStr(date: goal.creationDate))
+                    Text(getDateStr(date: goal.creationDate!))
                         .font(.callout)
                         .bold()
                 }
                 HStack {
-                    Text("\(goal.description)")
+                    Text("\(goal.goalDescription ?? "")")
                         .font(.subheadline)
                     Spacer()
-                    Text("\(Int(goal.progress))%")
-                        
                 }
             }
         }

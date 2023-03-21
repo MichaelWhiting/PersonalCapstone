@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct CreateJournalView: View {
+    @Environment(\.managedObjectContext) var moc
+    @Environment(\.dismiss) var dismiss
     
-    @State private var title = ""
-    @State private var text = ""
+    @State private var titleStr = ""
+    @State private var textStr = ""
     @State private var relatedGoals: [Goal] = []
-
-    @Binding var journals: [JournalEntry]
-    @Binding var goals: [Goal]
     
     @State var isEditing: Bool
+    
+    var entry: Entry?
+    
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -24,20 +26,30 @@ struct CreateJournalView: View {
                 List {
                     HStack {
                         Text("Journal Title:")
-                        TextField("Title", text: $title)
+                            .bold()
+                        TextField("Title", text: $titleStr)
                             .textFieldStyle(.roundedBorder)
                     }
-                    HStack {
+                    VStack(spacing: 5) {
                         Text("Journal Text:")
-                        TextField("Text", text: $text)
+                            .bold()
+                        TextField("Description", text: $textStr, axis: .vertical)
                             .textFieldStyle(.roundedBorder)
+                            .lineLimit(10)
                     }
-                    VStack {
-                        Text("Related Goals:")
-                        List($goals, id: \.self) { goal in
-                            Text("\(goal.title)")
+                    .padding(8)
+                    
+                    HStack(alignment: .center) {
+                        Spacer()
+                        Button(isEditing ? "Save" : "Create") {
+                            checkTextBoxes()
                         }
+                        .roundDarkButton()
+                        Spacer()
                     }
+                }
+                .onAppear() {
+                    checkEntry()
                 }
             }
             
@@ -51,8 +63,39 @@ struct CreateJournalView: View {
     }
 }
 
+extension CreateJournalView {
+    // MARK: Functions
+    func checkTextBoxes() {
+        if isEditing {
+            if !titleStr.isEmpty && !textStr.isEmpty {
+                if let entry {
+                    entry.title = titleStr
+                    entry.text = textStr
+                }
+                
+                try? moc.save()
+                
+                dismiss()
+            }
+        } else {
+            if !titleStr.isEmpty && !textStr.isEmpty {
+                let entry = Entry(context: moc)
+                
+                dismiss()
+            }
+        }
+    }
+    
+    func checkEntry() {
+        if let entry {
+            titleStr = entry.title ?? ""
+            textStr = entry.text ?? ""
+        }
+    }
+}
+
 struct CreateJournalView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateJournalView(journals: .constant([]), goals: .constant([]), isEditing: false)
+        CreateJournalView(isEditing: false)
     }
 }

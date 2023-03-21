@@ -7,22 +7,22 @@
 
 import SwiftUI
 
-struct Goal: Identifiable, Hashable {
-    static func == (lhs: Goal, rhs: Goal) -> Bool {
-        return false
-    }
-    
-    var id: String = UUID().uuidString
-    var title: String
-    var description: String
-    var progress: Double
-    var isCompleted: Bool
-    var creationDate: Date = Date()
-    var steps: [Step]?
-    
-    func hash(into hasher: inout Hasher) {
-        // leave blank
-    }
-}
+//struct Goal: Identifiable, Hashable {
+//    static func == (lhs: Goal, rhs: Goal) -> Bool {
+//        return false
+//    }
+//
+//    var id: String = UUID().uuidString
+//    var title: String
+//    var goalDescription: String
+//    var progress: Double
+//    var isCompleted: Bool
+//    var creationDate: Date = Date()
+//    var steps: [Step]?
+//
+//    func hash(into hasher: inout Hasher) {
+//        // leave blank
+//    }
+//}
 
 

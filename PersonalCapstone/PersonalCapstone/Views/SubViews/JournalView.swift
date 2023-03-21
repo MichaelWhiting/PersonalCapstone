@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct JournalView: View {
-    let journal: JournalEntry
+    let journal: Entry
 
     var body: some View {
-        VStack {
+        VStack(spacing: 5) {
             HStack(alignment: .top, spacing: 5) {
-                Text("\(journal.title)")
-                    .font(.title3)
+                Text("\(journal.title ?? "")")
+                    .font(.headline)
                     .bold()
                 Spacer()
-                Text(getDateStr(date: journal.creationDate))
+                Text(getDateStr(date: journal.createdDate!))
+                    .font(.callout)
+                    .bold()
             }
             HStack {
-                Text(journal.text)
-                Spacer()
-                Text("Related Goals")
+                Text("  \(journal.text ?? "")")
+                    .font(.subheadline)
+                    .lineLimit(3)
             }
         }
 

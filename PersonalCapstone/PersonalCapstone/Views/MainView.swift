@@ -12,18 +12,13 @@ enum TableViewType {
 }
 
 struct MainView: View {
-    @State private var goals: [Goal] = [
-        Goal(title: "Do Homework", description: "Homework", progress: 40, isCompleted: false),
-        Goal(title: "Learn Swift", description: "Coding", progress: 10, isCompleted: false),
-        Goal(title: "Finish Capstone", description: "Project", progress: 15, isCompleted: false),
-        Goal(title: "Work on internship", description: "Job", progress: 20, isCompleted: false),
-        Goal(title: "Do chores", description: "Chores", progress: 40, isCompleted: false)
-    ]
-    
-    @State private var journals: [JournalEntry] = [JournalEntry(title: "Journal #1", text: "This is my first journal!"), JournalEntry(title: "Journal #2", text: "This is my second journal! Testing how well a long journal text works!")
-    ]
-    
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var goals: FetchedResults<Goal>
+//    @FetchRequest(sortDescriptors: []) var entries: FetchedResults<Entry>
+    @State var entries: [Entry] = []
+    @State var selectedGoal: Goal?
     @State var isShowingGoals = true
+    @State var refresh: Bool = false
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
@@ -37,10 +32,10 @@ struct MainView: View {
                         .frame(height: 1)
                     if isShowingGoals {
                         List() {
-                            ForEach(Array(goals.enumerated()).reversed(), id: \.offset) { i, goal in
+                            ForEach(goals, id: \.self) { goal in
                                 ZStack {
                                     NavigationLink {
-                                        CreateGoalView(goals: $goals, isEditing: true, goal: goal, index: i)
+                                        CreateGoalView(isEditing: true, refresh: $refresh, goal: goal)
                                     } label: {
                                         Text("")
                                     }
@@ -48,23 +43,30 @@ struct MainView: View {
                                     GoalView(goal: goal)
                                 }
                             }
-                            .onDelete { i in
-                                goals.remove(atOffsets: i)
+                            .onDelete { indexSet in
+                                deleteItem(indexSet: indexSet, type: "Goal")
                             }
                          }
+                        .onAppear {
+                            moc.refreshAllObjects()
+                        }
                         .background(Color.offWhite)
                         .scrollContentBackground(.hidden)
                     } else {
                         List {
-                            ForEach(Array(journals.enumerated()).reversed(), id: \.offset) { i, entry in
+                            ForEach(Array(entries.enumerated()), id: \.offset) { i, entry in
                                 ZStack {
-//                                    NavigationLink {
-//                                    } label: {
-//                                        Text("")
-//                                    }
-//                                    .opacity(0.0)
+                                    NavigationLink {
+                                        // journals
+                                    } label: {
+                                        Text("")
+                                    }
+                                    .opacity(0.0)
                                     JournalView(journal: entry)
                                 }
+                            }
+                            .onDelete { indexSet in
+                                deleteItem(indexSet: indexSet, type: "Entry")
                             }
                         }
                         .listRowBackground(Color.white)
@@ -93,9 +95,9 @@ struct MainView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
                         if isShowingGoals {
-                            CreateGoalView(goals: $goals, isEditing: false)
+                            CreateGoalView(isEditing: false, refresh: $refresh)
                         } else {
-                            CreateJournalView(journals: $journals, goals: $goals, isEditing: false)
+                            CreateJournalView(isEditing: false)
                         }
                     } label: {
                         Image(systemName: "plus")
@@ -111,6 +113,26 @@ struct MainView: View {
                     }
                 }
             }
+        }
+    }
+}
+
+extension MainView {
+    // MARK: Delete Functions
+    func deleteItem(indexSet: IndexSet, type: String) {
+        for index in indexSet {
+            if type == "Goal" {
+                let goal = goals[index]
+                moc.delete(goal)
+            } else {
+                let entry = entries[index]
+                moc.delete(entry)
+            }
+        }
+        do {
+            try moc.save()
+        } catch {
+            print("Error with saving deletion: \(error.localizedDescription)")
         }
     }
 }
