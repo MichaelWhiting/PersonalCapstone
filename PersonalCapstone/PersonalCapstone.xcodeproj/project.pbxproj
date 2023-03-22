@@ -15,9 +15,8 @@
 		6E67064529B6465C0011A30F /* Journal Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67064429B6465C0011A30F /* Journal Entry.swift */; };
 		6E67064729B646A30011A30F /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67064629B646A30011A30F /* Step.swift */; };
 		6E67064929B648730011A30F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67064829B648730011A30F /* Colors.swift */; };
-		6EB48C5F29C8A4DE00A44175 /* Goal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C5D29C8A4DE00A44175 /* Goal.xcdatamodeld */; };
+		6EB48C5F29C8A4DE00A44175 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C5D29C8A4DE00A44175 /* CoreData.xcdatamodeld */; };
 		6EB48C6129C8A60700A44175 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C6029C8A60700A44175 /* DataController.swift */; };
-		6EB48CAC29CA089C00A44175 /* Entry.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48CAA29CA089C00A44175 /* Entry.xcdatamodeld */; };
 		6EFCBAEF29B79E6700EDBB79 /* CreateGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFCBAEE29B79E6700EDBB79 /* CreateGoalView.swift */; };
 		6EFCBAF129B7A4DA00EDBB79 /* Custom Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFCBAF029B7A4DA00EDBB79 /* Custom Modifiers.swift */; };
 		6EFCBAF329BA438400EDBB79 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFCBAF229BA438400EDBB79 /* GoalView.swift */; };
@@ -38,7 +37,6 @@
 		6E67064829B648730011A30F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		6EB48C5E29C8A4DE00A44175 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		6EB48C6029C8A60700A44175 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		6EB48CAB29CA089C00A44175 /* Entry.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Entry.xcdatamodel; sourceTree = "<group>"; };
 		6EFCBAEE29B79E6700EDBB79 /* CreateGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalView.swift; sourceTree = "<group>"; };
 		6EFCBAF029B7A4DA00EDBB79 /* Custom Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom Modifiers.swift"; sourceTree = "<group>"; };
 		6EFCBAF229BA438400EDBB79 /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
@@ -77,8 +75,7 @@
 		6E67063029B641B10011A30F /* PersonalCapstone */ = {
 			isa = PBXGroup;
 			children = (
-				6EB48C5D29C8A4DE00A44175 /* Goal.xcdatamodeld */,
-				6EB48CAA29CA089C00A44175 /* Entry.xcdatamodeld */,
+				6EB48C5D29C8A4DE00A44175 /* CoreData.xcdatamodeld */,
 				6EB48C6029C8A60700A44175 /* DataController.swift */,
 				6E67064329B6432F0011A30F /* Extensions */,
 				6E67064229B642DB0011A30F /* Views */,
@@ -219,8 +216,7 @@
 				6E67063429B641B10011A30F /* MainView.swift in Sources */,
 				6E67064929B648730011A30F /* Colors.swift in Sources */,
 				6E67064029B642C70011A30F /* Goal.swift in Sources */,
-				6EB48CAC29CA089C00A44175 /* Entry.xcdatamodeld in Sources */,
-				6EB48C5F29C8A4DE00A44175 /* Goal.xcdatamodeld in Sources */,
+				6EB48C5F29C8A4DE00A44175 /* CoreData.xcdatamodeld in Sources */,
 				6EFCBAEF29B79E6700EDBB79 /* CreateGoalView.swift in Sources */,
 				6EFCBB5D29C4C02C00EDBB79 /* CreateJournalView.swift in Sources */,
 				6E67064729B646A30011A30F /* Step.swift in Sources */,
@@ -433,23 +429,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6EB48C5D29C8A4DE00A44175 /* Goal.xcdatamodeld */ = {
+		6EB48C5D29C8A4DE00A44175 /* CoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				6EB48C5E29C8A4DE00A44175 /* CoreData.xcdatamodel */,
 			);
 			currentVersion = 6EB48C5E29C8A4DE00A44175 /* CoreData.xcdatamodel */;
-			path = Goal.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		6EB48CAA29CA089C00A44175 /* Entry.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				6EB48CAB29CA089C00A44175 /* Entry.xcdatamodel */,
-			);
-			currentVersion = 6EB48CAB29CA089C00A44175 /* Entry.xcdatamodel */;
-			path = Entry.xcdatamodeld;
+			path = CoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

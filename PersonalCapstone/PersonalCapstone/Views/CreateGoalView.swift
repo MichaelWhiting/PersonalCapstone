@@ -16,7 +16,6 @@ struct CreateGoalView: View {
     @State private var progress: Float = 0.0
         
     @State var isEditing: Bool
-    @Binding var refresh: Bool
     
     var goal: Goal?
     
@@ -96,15 +95,16 @@ extension CreateGoalView {
     func checkTextBoxes() {
         if isEditing {
             if !titleStr.isEmpty && !descriptionStr.isEmpty {
-                goal!.title = titleStr
-                goal!.goalDescription = descriptionStr
-                goal!.progress = Double(progress)
-                if goal!.progress == 100 {
-                    goal!.isCompleted = true
+                if let goal {
+                    goal.title = titleStr
+                    goal.goalDescription = descriptionStr
+                    goal.progress = Double(progress)
+                    
+                    if goal.progress == 100 {
+                        goal.isCompleted = true
+                    }
                 }
 
-                refresh.toggle()
-                
                 try? moc.save()
                 
                 dismiss()
@@ -136,6 +136,6 @@ extension CreateGoalView {
 
 struct CreateGoalView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateGoalView(isEditing: false, refresh: .constant(false))
+        CreateGoalView(isEditing: false)
     }
 }

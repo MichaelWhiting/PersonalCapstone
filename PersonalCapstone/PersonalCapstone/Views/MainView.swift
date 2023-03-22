@@ -13,12 +13,13 @@ enum TableViewType {
 
 struct MainView: View {
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var goals: FetchedResults<Goal>
-//    @FetchRequest(sortDescriptors: []) var entries: FetchedResults<Entry>
-    @State var entries: [Entry] = []
-    @State var selectedGoal: Goal?
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.progress, order: .reverse)]) var goals: FetchedResults<Goal>
+    @FetchRequest(sortDescriptors: []) var entries: FetchedResults<Entry>
+    
+    @State private var goalsRefreshID = UUID()
+    @State private var journalsRefreshID = UUID()
+    
     @State var isShowingGoals = true
-    @State var refresh: Bool = false
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
@@ -31,33 +32,41 @@ struct MainView: View {
                     Spacer()
                         .frame(height: 1)
                     if isShowingGoals {
-                        List() {
+                        List {
                             ForEach(goals, id: \.self) { goal in
                                 ZStack {
                                     NavigationLink {
-                                        CreateGoalView(isEditing: true, refresh: $refresh, goal: goal)
+                                        CreateGoalView(isEditing: true, goal: goal)
+                                            .onDisappear {
+                                                self.goalsRefreshID = UUID()
+                                            }
                                     } label: {
                                         Text("")
                                     }
+
                                     .opacity(0.0)
-                                    GoalView(goal: goal)
+                                    GoalView(goal: goal) // when called after editing cell time this isn't hitting the code that makes the actual cell view
                                 }
                             }
                             .onDelete { indexSet in
                                 deleteItem(indexSet: indexSet, type: "Goal")
                             }
+                            .id(goalsRefreshID)
                          }
-                        .onAppear {
-                            moc.refreshAllObjects()
-                        }
+//                        .onAppear {
+//                            moc.refreshAllObjects()
+//                        }
                         .background(Color.offWhite)
                         .scrollContentBackground(.hidden)
                     } else {
                         List {
-                            ForEach(Array(entries.enumerated()), id: \.offset) { i, entry in
+                            ForEach(entries, id: \.self) { entry in
                                 ZStack {
                                     NavigationLink {
-                                        // journals
+                                        CreateJournalView(isEditing: true, entry: entry)
+                                            .onDisappear {
+                                                self.journalsRefreshID = UUID()
+                                            }
                                     } label: {
                                         Text("")
                                     }
@@ -68,9 +77,13 @@ struct MainView: View {
                             .onDelete { indexSet in
                                 deleteItem(indexSet: indexSet, type: "Entry")
                             }
+                            .id(journalsRefreshID)
                         }
                         .listRowBackground(Color.white)
                     }
+                }
+                .onAppear {
+                    moc.refreshAllObjects()
                 }
                 .frame(
                     minWidth: 0,
@@ -95,7 +108,7 @@ struct MainView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
                         if isShowingGoals {
-                            CreateGoalView(isEditing: false, refresh: $refresh)
+                            CreateGoalView(isEditing: false)
                         } else {
                             CreateJournalView(isEditing: false)
                         }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GoalView: View {
-    let goal: Goal
+    var goal: Goal
 
     var body: some View {
         HStack(spacing: 15) {
@@ -38,8 +38,8 @@ struct GoalView: View {
     }
 }
 
-// MARK: Functions
 extension GoalView {
+    // MARK: Functions
     func getDateStr(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yy"

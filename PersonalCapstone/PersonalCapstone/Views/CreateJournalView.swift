@@ -23,6 +23,7 @@ struct CreateJournalView: View {
     var body: some View {
         ZStack(alignment: .top) {
             VStack(spacing: 20) {
+                Spacer()
                 List {
                     HStack {
                         Text("Journal Title:")
@@ -48,6 +49,7 @@ struct CreateJournalView: View {
                         Spacer()
                     }
                 }
+                .scrollContentBackground(.hidden)
                 .onAppear() {
                     checkEntry()
                 }
@@ -80,6 +82,11 @@ extension CreateJournalView {
         } else {
             if !titleStr.isEmpty && !textStr.isEmpty {
                 let entry = Entry(context: moc)
+                entry.title = titleStr
+                entry.text = textStr
+                entry.createdDate = Date()
+                
+                try? moc.save()
                 
                 dismiss()
             }
