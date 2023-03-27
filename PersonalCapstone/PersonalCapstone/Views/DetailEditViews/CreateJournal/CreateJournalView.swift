@@ -11,14 +11,17 @@ struct CreateJournalView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     
-    @State private var titleStr = ""
-    @State private var textStr = ""
-    @State private var relatedGoals: [Goal] = []
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     
-    @State var isEditing: Bool
+    var textColor: Color {
+        return colorScheme == .light ? .black : .white
+    }
     
+    @State var titleStr = ""
+    @State var textStr = ""
+    @State var relatedGoals: [Goal] = []
+        
     var entry: Entry?
-    
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -27,14 +30,18 @@ struct CreateJournalView: View {
                 List {
                     HStack {
                         Text("Journal Title:")
+                            .foregroundColor(textColor)
                             .bold()
                         TextField("Title", text: $titleStr)
+                            .foregroundColor(textColor)
                             .textFieldStyle(.roundedBorder)
                     }
                     VStack(spacing: 5) {
                         Text("Journal Text:")
+                            .foregroundColor(textColor)
                             .bold()
                         TextField("Description", text: $textStr, axis: .vertical)
+                            .foregroundColor(textColor)
                             .textFieldStyle(.roundedBorder)
                             .lineLimit(10)
                     }
@@ -42,10 +49,11 @@ struct CreateJournalView: View {
                     
                     HStack(alignment: .center) {
                         Spacer()
-                        Button(isEditing ? "Save" : "Create") {
+                        Button(entry != nil ? "Save" : "Create") {
                             checkTextBoxes()
                         }
                         .roundDarkButton()
+                        .foregroundColor(textColor)
                         Spacer()
                     }
                 }
@@ -54,6 +62,14 @@ struct CreateJournalView: View {
                     checkEntry()
                 }
             }
+            .frame(
+                minWidth: 0,
+                maxWidth: .infinity,
+                minHeight: 0,
+                maxHeight: .infinity,
+                alignment: .center
+            )
+            .background(colorScheme == .light ? Color.secondaryWhite : Color.black)
             
             GeometryReader { reader in
                 Color.primaryColor
@@ -61,48 +77,12 @@ struct CreateJournalView: View {
                     .ignoresSafeArea()
             }
         }
-        .navigationTitle("Create Journal")
-    }
-}
-
-extension CreateJournalView {
-    // MARK: Functions
-    func checkTextBoxes() {
-        if isEditing {
-            if !titleStr.isEmpty && !textStr.isEmpty {
-                if let entry {
-                    entry.title = titleStr
-                    entry.text = textStr
-                }
-                
-                try? moc.save()
-                
-                dismiss()
-            }
-        } else {
-            if !titleStr.isEmpty && !textStr.isEmpty {
-                let entry = Entry(context: moc)
-                entry.title = titleStr
-                entry.text = textStr
-                entry.createdDate = Date()
-                
-                try? moc.save()
-                
-                dismiss()
-            }
-        }
-    }
-    
-    func checkEntry() {
-        if let entry {
-            titleStr = entry.title ?? ""
-            textStr = entry.text ?? ""
-        }
+        .navigationTitle(entry != nil ? "Edit Journal" : "Create Journal")
     }
 }
 
 struct CreateJournalView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateJournalView(isEditing: false)
+        CreateJournalView()
     }
 }

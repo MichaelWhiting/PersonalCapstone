@@ -13,14 +13,19 @@ enum TableViewType {
 
 struct MainView: View {
     @Environment(\.managedObjectContext) var moc
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
     @FetchRequest(sortDescriptors: [SortDescriptor(\.progress, order: .reverse)]) var goals: FetchedResults<Goal>
     @FetchRequest(sortDescriptors: []) var entries: FetchedResults<Entry>
     
     @State private var goalsRefreshID = UUID()
     @State private var journalsRefreshID = UUID()
     
-    @State var isShowingGoals = true
+    @State var selectedListType = "Goals"
+    @State var refresh = false
     
+    var listTypes = ["Goals", "Journals"]
+
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
     }
@@ -30,13 +35,21 @@ struct MainView: View {
             ZStack(alignment: .top) {
                 VStack(spacing: 0) {
                     Spacer()
-                        .frame(height: 1)
-                    if isShowingGoals {
+                        .frame(height: 20)
+                    Picker("Type", selection: $selectedListType) {
+                        ForEach(listTypes, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .frame(width: 200, alignment: .center)
+                    
+                    if selectedListType == "Goals" {
                         List {
                             ForEach(goals, id: \.self) { goal in
                                 ZStack {
                                     NavigationLink {
-                                        CreateGoalView(isEditing: true, goal: goal)
+                                        CreateGoalView(goal: goal)
                                             .onDisappear {
                                                 self.goalsRefreshID = UUID()
                                             }
@@ -45,25 +58,25 @@ struct MainView: View {
                                     }
 
                                     .opacity(0.0)
-                                    GoalView(goal: goal) // when called after editing cell time this isn't hitting the code that makes the actual cell view
+                                    GoalView(goal: goal)
                                 }
                             }
                             .onDelete { indexSet in
                                 deleteItem(indexSet: indexSet, type: "Goal")
                             }
                             .id(goalsRefreshID)
+                            .listRowBackground(colorScheme == .light ? Color.white : Color.secondaryBlack)
                          }
-//                        .onAppear {
-//                            moc.refreshAllObjects()
-//                        }
-                        .background(Color.offWhite)
                         .scrollContentBackground(.hidden)
+                        .refreshable {
+                            refresh.toggle()
+                        }
                     } else {
                         List {
                             ForEach(entries, id: \.self) { entry in
                                 ZStack {
                                     NavigationLink {
-                                        CreateJournalView(isEditing: true, entry: entry)
+                                        CreateJournalView(entry: entry)
                                             .onDisappear {
                                                 self.journalsRefreshID = UUID()
                                             }
@@ -78,12 +91,13 @@ struct MainView: View {
                                 deleteItem(indexSet: indexSet, type: "Entry")
                             }
                             .id(journalsRefreshID)
+                            .listRowBackground(colorScheme == .light ? Color.white : Color.secondaryBlack)
                         }
-                        .listRowBackground(Color.white)
+                        .scrollContentBackground(.hidden)
+                        .refreshable {
+                            refresh.toggle()
+                        }
                     }
-                }
-                .onAppear {
-                    moc.refreshAllObjects()
                 }
                 .frame(
                     minWidth: 0,
@@ -92,7 +106,7 @@ struct MainView: View {
                     maxHeight: .infinity,
                     alignment: .center
                 )
-                .background(Color.white)
+                .background(colorScheme == .light ? Color.secondaryWhite : .black)
 
                 
                 GeometryReader { reader in
@@ -107,22 +121,13 @@ struct MainView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
-                        if isShowingGoals {
-                            CreateGoalView(isEditing: false)
+                        if selectedListType == "Goals" {
+                            CreateGoalView()
                         } else {
-                            CreateJournalView(isEditing: false)
+                            CreateJournalView()
                         }
                     } label: {
                         Image(systemName: "plus")
-                    }
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button() {
-                        isShowingGoals.toggle()
-                    } label: {
-                        let type = isShowingGoals ? "book" : "stairs"
-                        Image(systemName: type)
                     }
                 }
             }
@@ -131,7 +136,7 @@ struct MainView: View {
 }
 
 extension MainView {
-    // MARK: Delete Functions
+    // MARK: Functions
     func deleteItem(indexSet: IndexSet, type: String) {
         for index in indexSet {
             if type == "Goal" {

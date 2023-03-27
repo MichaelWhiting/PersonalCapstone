@@ -10,7 +10,7 @@ import SwiftUI
 struct CircleProgressBar: View {
     let progress: Double
     let lineWidth: CGFloat
-    
+
     var body: some View {
         Circle()
             .stroke(

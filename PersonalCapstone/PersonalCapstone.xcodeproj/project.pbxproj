@@ -17,6 +17,10 @@
 		6E67064929B648730011A30F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67064829B648730011A30F /* Colors.swift */; };
 		6EB48C5F29C8A4DE00A44175 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C5D29C8A4DE00A44175 /* CoreData.xcdatamodeld */; };
 		6EB48C6129C8A60700A44175 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C6029C8A60700A44175 /* DataController.swift */; };
+		6EB48CB229CB520C00A44175 /* CreateGoalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48CB129CB520C00A44175 /* CreateGoalFunctions.swift */; };
+		6EB48CB629CB52C800A44175 /* CreateJournalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48CB529CB52C800A44175 /* CreateJournalFunctions.swift */; };
+		6EB48CB929CB535300A44175 /* JournalViewFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48CB829CB535300A44175 /* JournalViewFunctions.swift */; };
+		6EB48CBC29CB538F00A44175 /* GoalViewFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48CBB29CB538F00A44175 /* GoalViewFunctions.swift */; };
 		6EFCBAEF29B79E6700EDBB79 /* CreateGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFCBAEE29B79E6700EDBB79 /* CreateGoalView.swift */; };
 		6EFCBAF129B7A4DA00EDBB79 /* Custom Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFCBAF029B7A4DA00EDBB79 /* Custom Modifiers.swift */; };
 		6EFCBAF329BA438400EDBB79 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFCBAF229BA438400EDBB79 /* GoalView.swift */; };
@@ -37,6 +41,10 @@
 		6E67064829B648730011A30F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		6EB48C5E29C8A4DE00A44175 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		6EB48C6029C8A60700A44175 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		6EB48CB129CB520C00A44175 /* CreateGoalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalFunctions.swift; sourceTree = "<group>"; };
+		6EB48CB529CB52C800A44175 /* CreateJournalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJournalFunctions.swift; sourceTree = "<group>"; };
+		6EB48CB829CB535300A44175 /* JournalViewFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewFunctions.swift; sourceTree = "<group>"; };
+		6EB48CBB29CB538F00A44175 /* GoalViewFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewFunctions.swift; sourceTree = "<group>"; };
 		6EFCBAEE29B79E6700EDBB79 /* CreateGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalView.swift; sourceTree = "<group>"; };
 		6EFCBAF029B7A4DA00EDBB79 /* Custom Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom Modifiers.swift"; sourceTree = "<group>"; };
 		6EFCBAF229BA438400EDBB79 /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
@@ -75,8 +83,7 @@
 		6E67063029B641B10011A30F /* PersonalCapstone */ = {
 			isa = PBXGroup;
 			children = (
-				6EB48C5D29C8A4DE00A44175 /* CoreData.xcdatamodeld */,
-				6EB48C6029C8A60700A44175 /* DataController.swift */,
+				6EB48CAF29CB480100A44175 /* CoreData */,
 				6E67064329B6432F0011A30F /* Extensions */,
 				6E67064229B642DB0011A30F /* Views */,
 				6E67064129B642CC0011A30F /* Models */,
@@ -108,11 +115,10 @@
 		6E67064229B642DB0011A30F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6EFCBB3629C0C5FC00EDBB79 /* DetailViews */,
-				6EFCBB3529C0B42300EDBB79 /* SubViews */,
 				6E67063329B641B10011A30F /* MainView.swift */,
-				6EFCBAEE29B79E6700EDBB79 /* CreateGoalView.swift */,
-				6EFCBB5C29C4C02C00EDBB79 /* CreateJournalView.swift */,
+				6EB48CB029CB482200A44175 /* CustomDetailViews */,
+				6EFCBB3629C0C5FC00EDBB79 /* DetailEditViews */,
+				6EFCBB3529C0B42300EDBB79 /* SubViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -126,21 +132,75 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		6EFCBB3529C0B42300EDBB79 /* SubViews */ = {
+		6EB48CAF29CB480100A44175 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				6EFCBAF229BA438400EDBB79 /* GoalView.swift */,
-				6EFCBAF429BA47C100EDBB79 /* JournalView.swift */,
+				6EB48C5D29C8A4DE00A44175 /* CoreData.xcdatamodeld */,
+				6EB48C6029C8A60700A44175 /* DataController.swift */,
 			);
-			path = SubViews;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
-		6EFCBB3629C0C5FC00EDBB79 /* DetailViews */ = {
+		6EB48CB029CB482200A44175 /* CustomDetailViews */ = {
 			isa = PBXGroup;
 			children = (
 				6EFCBB3729C0C64C00EDBB79 /* CircleProgressBar.swift */,
 			);
-			path = DetailViews;
+			path = CustomDetailViews;
+			sourceTree = "<group>";
+		};
+		6EB48CB329CB525100A44175 /* CreateGoal */ = {
+			isa = PBXGroup;
+			children = (
+				6EFCBAEE29B79E6700EDBB79 /* CreateGoalView.swift */,
+				6EB48CB129CB520C00A44175 /* CreateGoalFunctions.swift */,
+			);
+			path = CreateGoal;
+			sourceTree = "<group>";
+		};
+		6EB48CB429CB526700A44175 /* CreateJournal */ = {
+			isa = PBXGroup;
+			children = (
+				6EFCBB5C29C4C02C00EDBB79 /* CreateJournalView.swift */,
+				6EB48CB529CB52C800A44175 /* CreateJournalFunctions.swift */,
+			);
+			path = CreateJournal;
+			sourceTree = "<group>";
+		};
+		6EB48CB729CB533500A44175 /* JournalView */ = {
+			isa = PBXGroup;
+			children = (
+				6EFCBAF429BA47C100EDBB79 /* JournalView.swift */,
+				6EB48CB829CB535300A44175 /* JournalViewFunctions.swift */,
+			);
+			path = JournalView;
+			sourceTree = "<group>";
+		};
+		6EB48CBA29CB537200A44175 /* GoalView */ = {
+			isa = PBXGroup;
+			children = (
+				6EFCBAF229BA438400EDBB79 /* GoalView.swift */,
+				6EB48CBB29CB538F00A44175 /* GoalViewFunctions.swift */,
+			);
+			path = GoalView;
+			sourceTree = "<group>";
+		};
+		6EFCBB3529C0B42300EDBB79 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				6EB48CBA29CB537200A44175 /* GoalView */,
+				6EB48CB729CB533500A44175 /* JournalView */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		6EFCBB3629C0C5FC00EDBB79 /* DetailEditViews */ = {
+			isa = PBXGroup;
+			children = (
+				6EB48CB429CB526700A44175 /* CreateJournal */,
+				6EB48CB329CB525100A44175 /* CreateGoal */,
+			);
+			path = DetailEditViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,17 +276,21 @@
 				6E67063429B641B10011A30F /* MainView.swift in Sources */,
 				6E67064929B648730011A30F /* Colors.swift in Sources */,
 				6E67064029B642C70011A30F /* Goal.swift in Sources */,
+				6EB48CB229CB520C00A44175 /* CreateGoalFunctions.swift in Sources */,
 				6EB48C5F29C8A4DE00A44175 /* CoreData.xcdatamodeld in Sources */,
 				6EFCBAEF29B79E6700EDBB79 /* CreateGoalView.swift in Sources */,
 				6EFCBB5D29C4C02C00EDBB79 /* CreateJournalView.swift in Sources */,
+				6EB48CBC29CB538F00A44175 /* GoalViewFunctions.swift in Sources */,
 				6E67064729B646A30011A30F /* Step.swift in Sources */,
 				6EB48C6129C8A60700A44175 /* DataController.swift in Sources */,
 				6EFCBB3829C0C64C00EDBB79 /* CircleProgressBar.swift in Sources */,
 				6E67063229B641B10011A30F /* PersonalCapstoneApp.swift in Sources */,
 				6EFCBAF529BA47C100EDBB79 /* JournalView.swift in Sources */,
+				6EB48CB929CB535300A44175 /* JournalViewFunctions.swift in Sources */,
 				6EFCBAF129B7A4DA00EDBB79 /* Custom Modifiers.swift in Sources */,
 				6EFCBAF329BA438400EDBB79 /* GoalView.swift in Sources */,
 				6E67064529B6465C0011A30F /* Journal Entry.swift in Sources */,
+				6EB48CB629CB52C800A44175 /* CreateJournalFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +427,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -392,6 +457,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
