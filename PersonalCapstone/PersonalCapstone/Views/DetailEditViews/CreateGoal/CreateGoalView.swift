@@ -20,34 +20,56 @@ struct CreateGoalView: View {
     @State var titleStr = ""
     @State var descriptionStr = ""
     @State var progress: Float = 0.0
+    @State var selectedProgressType = "Drag"
 
     var goal: Goal?
+    @State var goalSteps = [String]()
     
     var body: some View {
         ZStack {
             VStack(alignment: .leading, spacing: 0) {
                 Spacer()
                 List {
-                    HStack(alignment: .center) {
-                        Text("Goal Title:")
-                            .foregroundColor(textColor)
-                            .font(.headline)
-                            .bold()
-                        TextField("Title", text: $titleStr)
-                            .foregroundColor(textColor)
-                            .textFieldStyle(.roundedBorder)
+                    Group {
+                        HStack(alignment: .center) {
+                            Text("Goal Title:")
+                                .foregroundColor(textColor)
+                                .font(.headline)
+                                .bold()
+                            TextField("Title", text: $titleStr)
+                                .foregroundColor(textColor)
+                                .textFieldStyle(.roundedBorder)
+                        }
+                        HStack(alignment: .center) {
+                            Text("Goal Description: ")
+                                .foregroundColor(textColor)
+                                .font(.headline)
+                                .bold()
+                            TextField("Description", text: $descriptionStr)
+                                .foregroundColor(textColor)
+                                .textFieldStyle(.roundedBorder)
+                        }
                     }
+                }
+                .scrollContentBackground(.hidden)
+                .onAppear {
+                    checkGoal()
+                }
+                VStack {
                     HStack(alignment: .center) {
-                        Text("Goal Description: ")
-                            .foregroundColor(textColor)
-                            .font(.headline)
-                            .bold()
-                        TextField("Description", text: $descriptionStr)
-                            .foregroundColor(textColor)
-                            .textFieldStyle(.roundedBorder)
-                    }
-                    HStack {
                         Spacer()
+                        Picker("Progress Type", selection: $selectedProgressType) {
+                            ForEach(["Drag", "Steps"], id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                        .frame(width: 300)
+                        Spacer()
+                    }
+ 
+    
+                    if selectedProgressType == "Drag" {
                         VStack {
                             Text("Current Progress")
                                 .foregroundColor(textColor)
@@ -66,13 +88,26 @@ struct CreateGoalView: View {
                             Slider(value: $progress, in: 0...100)
                         }
                         .frame(width: 300, height: 300)
-                        Spacer()
+                    }
+                    
+                    if selectedProgressType == "Steps" {
+                        List {
+                            ForEach(goal?.stepsArray ?? [], id: \.self) { step in
+                                StepView(title: step.title ?? "", stepNum: step.stepNum, isComplete: step.isComplete)
+                            }
+                            .onDelete { indexSet in
+                                for index in indexSet {
+                                    goal?.removeFromSteps(goal!.stepsArray[index])
+                                    try? moc.save()
+                                }
+                            }
+                        }
                     }
                 }
-                .scrollContentBackground(.hidden)
-                .onAppear {
-                    checkGoal()
-                }
+                
+                Spacer()
+                Spacer()
+                
                 HStack(alignment: .center) {
                     Spacer()
                     Button(goal != nil ? "Save" : "Create") {
@@ -82,7 +117,6 @@ struct CreateGoalView: View {
                     .foregroundColor(textColor)
                     Spacer()
                 }
-                Spacer()
             }
             .frame(
                 minWidth: 0,
