@@ -21,9 +21,10 @@ struct CreateGoalView: View {
     @State var descriptionStr = ""
     @State var progress: Float = 0.0
     @State var selectedProgressType = "Steps"
+    @State var goalSteps = [String]()
+    @State var presentStepCreate = false
 
     var goal: Goal?
-    @State var goalSteps = [String]()
     
     var body: some View {
         ZStack {
@@ -93,14 +94,24 @@ struct CreateGoalView: View {
                     } else {
                         VStack(spacing: 10) {
                             Spacer()
-                            Button {
-                                
-                            } label: {
-                                Text("Add Step")
-                                    .foregroundColor(.white)
-                                    .frame(width: 100, height: 40)
-                                    .background(RoundedRectangle(cornerRadius: 10))
+                            if presentStepCreate {
+                                CreateStepView(goal: goal, textColor: textColor, presentStepCreate: $presentStepCreate)
                             }
+                            
+                            Button {
+                                withAnimation {
+                                    presentStepCreate.toggle()
+                                }
+                            } label: {
+                                Text(presentStepCreate ? "Cancel" : "Add Step")
+                                    .frame(width: 100, height: 30)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(presentStepCreate ? Color.red : Color.blue, lineWidth: 2)
+                                    )
+                            }
+                            
+                            Divider()
                             
                             List {
                                 ForEach(goal?.stepsArray ?? [], id: \.self) { step in
@@ -114,6 +125,9 @@ struct CreateGoalView: View {
                                 }
                             }
                             .scrollContentBackground(.hidden)
+                            Spacer()
+                            Spacer()
+                            
                         }
                     }
                 }
@@ -138,6 +152,19 @@ struct CreateGoalView: View {
                 alignment: .top
             )
             .background(colorScheme == .light ? Color.secondaryWhite : Color.black)
+            .onAppear {
+                if goal?.stepsArray.count ?? 0 > 0 {
+                    var completedSteps = [Step]()
+                    goal?.stepsArray.forEach { step in
+                        if step.isComplete {
+                            completedSteps.append(step)
+                        }
+                    }
+                    withAnimation {
+                        progress = Float(Double(completedSteps.count) / Double(goal?.stepsArray.count ?? 1) * 100.0)
+                    }
+                }
+            }
             
             GeometryReader { reader in
                 Color.primaryColor

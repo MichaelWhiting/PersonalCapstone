@@ -23,6 +23,7 @@
 		6EB48CCB29D1F1EE00A44175 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48CC729D1F1EE00A44175 /* Goal+CoreDataClass.swift */; };
 		6EB48CCC29D1F1EE00A44175 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48CC829D1F1EE00A44175 /* Goal+CoreDataProperties.swift */; };
 		6EB48CCF29D22E7A00A44175 /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48CCE29D22E7A00A44175 /* StepView.swift */; };
+		6EB48CED29D5D42F00A44175 /* CreateStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48CEC29D5D42F00A44175 /* CreateStepView.swift */; };
 		6EFCBAEF29B79E6700EDBB79 /* CreateGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFCBAEE29B79E6700EDBB79 /* CreateGoalView.swift */; };
 		6EFCBAF129B7A4DA00EDBB79 /* Custom Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFCBAF029B7A4DA00EDBB79 /* Custom Modifiers.swift */; };
 		6EFCBAF329BA438400EDBB79 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFCBAF229BA438400EDBB79 /* GoalView.swift */; };
@@ -49,6 +50,7 @@
 		6EB48CC729D1F1EE00A44175 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		6EB48CC829D1F1EE00A44175 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		6EB48CCE29D22E7A00A44175 /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
+		6EB48CEC29D5D42F00A44175 /* CreateStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStepView.swift; sourceTree = "<group>"; };
 		6EFCBAEE29B79E6700EDBB79 /* CreateGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalView.swift; sourceTree = "<group>"; };
 		6EFCBAF029B7A4DA00EDBB79 /* Custom Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom Modifiers.swift"; sourceTree = "<group>"; };
 		6EFCBAF229BA438400EDBB79 /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		6EFCBB3629C0C5FC00EDBB79 /* DetailEditViews */ = {
 			isa = PBXGroup;
 			children = (
+				6EB48CEC29D5D42F00A44175 /* CreateStepView.swift */,
 				6EB48CB429CB526700A44175 /* CreateJournal */,
 				6EB48CB329CB525100A44175 /* CreateGoal */,
 			);
@@ -290,6 +293,7 @@
 				6EB48CCF29D22E7A00A44175 /* StepView.swift in Sources */,
 				6EFCBB5D29C4C02C00EDBB79 /* CreateJournalView.swift in Sources */,
 				6EB48CCB29D1F1EE00A44175 /* Goal+CoreDataClass.swift in Sources */,
+				6EB48CED29D5D42F00A44175 /* CreateStepView.swift in Sources */,
 				6EB48CBC29CB538F00A44175 /* GoalViewFunctions.swift in Sources */,
 				6EB48C6129C8A60700A44175 /* DataController.swift in Sources */,
 				6EFCBB3829C0C64C00EDBB79 /* CircleProgressBar.swift in Sources */,
