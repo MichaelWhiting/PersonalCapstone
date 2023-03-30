@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct StepView: View {
-    var title: String
-    var stepNum: Int
-    var isComplete: Bool
+    @Environment(\.managedObjectContext) var moc
+    @ObservedObject var step: Step
     
     var body: some View {
         HStack {
-            Text("\(title)")
+            Text(step.title ?? "")
                 .font(.headline)
             Spacer()
             Button {
-
+                step.isComplete.toggle()
+                try? moc.save()
             } label: {
-                Image(systemName: isComplete ? "checkmark.circle.fill" : "checkmark.circle")
-            }
+                Image(systemName: step.isComplete ? "checkmark.circle.fill" : "checkmark.circle")
+            }            
         }
     }
 }

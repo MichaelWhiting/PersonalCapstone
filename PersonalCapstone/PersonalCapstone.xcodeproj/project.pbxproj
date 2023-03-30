@@ -90,7 +90,6 @@
 				6EB48CAF29CB480100A44175 /* CoreData */,
 				6E67064329B6432F0011A30F /* Extensions */,
 				6E67064229B642DB0011A30F /* Views */,
-				6E67064129B642CC0011A30F /* Models */,
 				6E67063129B641B10011A30F /* PersonalCapstoneApp.swift */,
 				6E67063529B641B20011A30F /* Assets.xcassets */,
 				6E67063729B641B20011A30F /* Preview Content */,
@@ -104,13 +103,6 @@
 				6E67063829B641B20011A30F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		6E67064129B642CC0011A30F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		6E67064229B642DB0011A30F /* Views */ = {

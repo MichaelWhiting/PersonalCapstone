@@ -20,17 +20,17 @@ struct CreateGoalView: View {
     @State var titleStr = ""
     @State var descriptionStr = ""
     @State var progress: Float = 0.0
-    @State var selectedProgressType = "Drag"
+    @State var selectedProgressType = "Steps"
 
     var goal: Goal?
     @State var goalSteps = [String]()
     
     var body: some View {
         ZStack {
-            VStack(alignment: .leading, spacing: 0) {
-                Spacer()
-                List {
-                    Group {
+            VStack {
+                VStack {
+                    Spacer()
+                    List {
                         HStack(alignment: .center) {
                             Text("Goal Title:")
                                 .foregroundColor(textColor)
@@ -50,11 +50,13 @@ struct CreateGoalView: View {
                                 .textFieldStyle(.roundedBorder)
                         }
                     }
+                    .scrollContentBackground(.hidden)
+                    .onAppear {
+                        checkGoal()
+                    }
                 }
-                .scrollContentBackground(.hidden)
-                .onAppear {
-                    checkGoal()
-                }
+                .frame(height: 150)
+               
                 VStack {
                     HStack(alignment: .center) {
                         Spacer()
@@ -67,8 +69,8 @@ struct CreateGoalView: View {
                         .frame(width: 300)
                         Spacer()
                     }
- 
-    
+                    
+                    // MARK: Progress Types
                     if selectedProgressType == "Drag" {
                         VStack {
                             Text("Current Progress")
@@ -88,24 +90,34 @@ struct CreateGoalView: View {
                             Slider(value: $progress, in: 0...100)
                         }
                         .frame(width: 300, height: 300)
-                    }
-                    
-                    if selectedProgressType == "Steps" {
-                        List {
-                            ForEach(goal?.stepsArray ?? [], id: \.self) { step in
-                                StepView(title: step.title ?? "", stepNum: step.stepNum, isComplete: step.isComplete)
+                    } else {
+                        VStack(spacing: 10) {
+                            Spacer()
+                            Button {
+                                
+                            } label: {
+                                Text("Add Step")
+                                    .foregroundColor(.white)
+                                    .frame(width: 100, height: 40)
+                                    .background(RoundedRectangle(cornerRadius: 10))
                             }
-                            .onDelete { indexSet in
-                                for index in indexSet {
-                                    goal?.removeFromSteps(goal!.stepsArray[index])
-                                    try? moc.save()
+                            
+                            List {
+                                ForEach(goal?.stepsArray ?? [], id: \.self) { step in
+                                    StepView(step: step)
+                                }
+                                .onDelete { indexSet in
+                                    for index in indexSet {
+                                        goal?.removeFromSteps(goal!.stepsArray[index])
+                                        try? moc.save()
+                                    }
                                 }
                             }
+                            .scrollContentBackground(.hidden)
                         }
                     }
                 }
-                
-                Spacer()
+
                 Spacer()
                 
                 HStack(alignment: .center) {
@@ -123,7 +135,7 @@ struct CreateGoalView: View {
                 maxWidth: .infinity,
                 minHeight: 0,
                 maxHeight: .infinity,
-                alignment: .center
+                alignment: .top
             )
             .background(colorScheme == .light ? Color.secondaryWhite : Color.black)
             
@@ -132,6 +144,9 @@ struct CreateGoalView: View {
                     .frame(height: reader.safeAreaInsets.top, alignment: .top)
                     .ignoresSafeArea()
             }
+        }
+        .onAppear {
+            selectedProgressType = goal?.stepsArray.count ?? 0 > 0 ? "Steps" : "Drag"
         }
         .navigationTitle(goal != nil ? "Edit Goal" : "Create Goal")
     }
