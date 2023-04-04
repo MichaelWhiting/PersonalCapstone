@@ -43,7 +43,7 @@ struct CreateJournalView: View {
                         TextField("Description", text: $textStr, axis: .vertical)
                             .foregroundColor(textColor)
                             .textFieldStyle(.roundedBorder)
-                            .lineLimit(10)
+                            .lineLimit(20)
                     }
                     .padding(8)
                     

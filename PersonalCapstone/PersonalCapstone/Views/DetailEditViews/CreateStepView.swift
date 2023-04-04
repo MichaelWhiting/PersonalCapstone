@@ -15,6 +15,7 @@ struct CreateStepView: View {
     var textColor: Color
     
     @Binding var presentStepCreate: Bool
+    @Binding var stepsToAdd: [Step]
     
     var body: some View {
         Divider()
@@ -48,19 +49,29 @@ struct CreateStepView: View {
 
 extension CreateStepView {
     func createNewStep() {
-        if let goal {
-            let newStep = Step(context: moc)
-            newStep.goal = goal
-            newStep.isComplete = false
-            newStep.title = titleStr
-            newStep.stepNum = goal.stepsArray.count + 1
-            
-            goal.addToSteps(newStep)
-            
-            try? moc.save()
-            
-            withAnimation {
-                presentStepCreate.toggle()
+        if !titleStr.isEmpty {
+            if let goal {
+                let newStep = Step(context: moc)
+                newStep.goal = goal
+                newStep.isComplete = false
+                newStep.title = titleStr
+                newStep.stepNum = goal.stepsArray.count + 1
+                
+                goal.addToSteps(newStep)
+                
+                try? moc.save()
+                
+                withAnimation {
+                    presentStepCreate.toggle()
+                }
+            } else {
+                let newStep = Step(context: moc)
+                newStep.goal = goal
+                newStep.isComplete = false
+                newStep.title = titleStr
+                newStep.stepNum = stepsToAdd.count
+                
+                stepsToAdd.append(newStep)
             }
         }
     }

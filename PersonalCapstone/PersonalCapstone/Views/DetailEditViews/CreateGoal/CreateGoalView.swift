@@ -20,10 +20,11 @@ struct CreateGoalView: View {
     @State var titleStr = ""
     @State var descriptionStr = ""
     @State var progress: Float = 0.0
-    @State var selectedProgressType = "Steps"
+    
+    @State var selectedProgressType = "Progress"
     @State var goalSteps = [String]()
-    @State var presentStepCreate = false
-
+    @State var stepsToAdd = [Step]()
+    
     var goal: Goal?
     
     var body: some View {
@@ -62,7 +63,7 @@ struct CreateGoalView: View {
                     HStack(alignment: .center) {
                         Spacer()
                         Picker("Progress Type", selection: $selectedProgressType) {
-                            ForEach(["Drag", "Steps"], id: \.self) {
+                            ForEach(["Slider", "Steps"], id: \.self) {
                                 Text($0)
                             }
                         }
@@ -72,68 +73,22 @@ struct CreateGoalView: View {
                     }
                     
                     // MARK: Progress Types
-                    if selectedProgressType == "Drag" {
+                    if selectedProgressType == "Slider" {
                         VStack {
-                            Text("Current Progress")
-                                .foregroundColor(textColor)
-                                .font(.title3)
-                                .bold()
-                            Spacer()
-                            ZStack {
-                                Text("\(Int(progress))%")
-                                    .foregroundColor(textColor)
-                                    .font(.title2)
-                                    .bold()
-                                CircleProgressBar(progress: Double(progress), lineWidth: 20)
-                                    .frame(width: 200, height: 200)
+                            SliderView(textColor: textColor, progress: progress)
+                            if goal?.stepsArray.count ?? 0 <= 0 {
+                                Slider(value: $progress, in: 0...100)
                             }
-                            
-                            Slider(value: $progress, in: 0...100)
                         }
                         .frame(width: 300, height: 300)
                     } else {
-                        VStack(spacing: 10) {
-                            Spacer()
-                            if presentStepCreate {
-                                CreateStepView(goal: goal, textColor: textColor, presentStepCreate: $presentStepCreate)
-                            }
-                            
-                            Button {
-                                withAnimation {
-                                    presentStepCreate.toggle()
-                                }
-                            } label: {
-                                Text(presentStepCreate ? "Cancel" : "Add Step")
-                                    .frame(width: 100, height: 30)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(presentStepCreate ? Color.red : Color.blue, lineWidth: 2)
-                                    )
-                            }
-                            
-                            Divider()
-                            
-                            List {
-                                ForEach(goal?.stepsArray ?? [], id: \.self) { step in
-                                    StepView(step: step)
-                                }
-                                .onDelete { indexSet in
-                                    for index in indexSet {
-                                        goal?.removeFromSteps(goal!.stepsArray[index])
-                                        try? moc.save()
-                                    }
-                                }
-                            }
-                            .scrollContentBackground(.hidden)
-                            Spacer()
-                            Spacer()
-                            
-                        }
+                        StepListView(goal: goal, textColor: textColor, stepsToAdd: $stepsToAdd)
                     }
                 }
 
                 Spacer()
                 
+                // MARK: Save Button
                 HStack(alignment: .center) {
                     Spacer()
                     Button(goal != nil ? "Save" : "Create") {
@@ -152,19 +107,6 @@ struct CreateGoalView: View {
                 alignment: .top
             )
             .background(colorScheme == .light ? Color.secondaryWhite : Color.black)
-            .onAppear {
-                if goal?.stepsArray.count ?? 0 > 0 {
-                    var completedSteps = [Step]()
-                    goal?.stepsArray.forEach { step in
-                        if step.isComplete {
-                            completedSteps.append(step)
-                        }
-                    }
-                    withAnimation {
-                        progress = Float(Double(completedSteps.count) / Double(goal?.stepsArray.count ?? 1) * 100.0)
-                    }
-                }
-            }
             
             GeometryReader { reader in
                 Color.primaryColor
@@ -173,7 +115,7 @@ struct CreateGoalView: View {
             }
         }
         .onAppear {
-            selectedProgressType = goal?.stepsArray.count ?? 0 > 0 ? "Steps" : "Drag"
+            selectedProgressType = goal?.stepsArray.count ?? 0 > 0 ? "Steps" : "Slider"
         }
         .navigationTitle(goal != nil ? "Edit Goal" : "Create Goal")
     }

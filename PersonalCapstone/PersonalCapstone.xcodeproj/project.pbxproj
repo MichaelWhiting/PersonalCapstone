@@ -12,6 +12,8 @@
 		6E67063629B641B20011A30F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E67063529B641B20011A30F /* Assets.xcassets */; };
 		6E67063929B641B20011A30F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E67063829B641B20011A30F /* Preview Assets.xcassets */; };
 		6E67064929B648730011A30F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67064829B648730011A30F /* Colors.swift */; };
+		6EA7E2CA29DC65E000E58D1E /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7E2C929DC65E000E58D1E /* SliderView.swift */; };
+		6EA7E2CC29DC674500E58D1E /* StepListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7E2CB29DC674500E58D1E /* StepListView.swift */; };
 		6EB48C5F29C8A4DE00A44175 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C5D29C8A4DE00A44175 /* CoreData.xcdatamodeld */; };
 		6EB48C6129C8A60700A44175 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C6029C8A60700A44175 /* DataController.swift */; };
 		6EB48CB229CB520C00A44175 /* CreateGoalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48CB129CB520C00A44175 /* CreateGoalFunctions.swift */; };
@@ -39,6 +41,8 @@
 		6E67063529B641B20011A30F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E67063829B641B20011A30F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6E67064829B648730011A30F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		6EA7E2C929DC65E000E58D1E /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		6EA7E2CB29DC674500E58D1E /* StepListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepListView.swift; sourceTree = "<group>"; };
 		6EB48C5E29C8A4DE00A44175 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		6EB48C6029C8A60700A44175 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		6EB48CB129CB520C00A44175 /* CreateGoalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalFunctions.swift; sourceTree = "<group>"; };
@@ -127,6 +131,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		6EA7E2CD29DC692900E58D1E /* ProgressSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				6EA7E2C929DC65E000E58D1E /* SliderView.swift */,
+				6EA7E2CB29DC674500E58D1E /* StepListView.swift */,
+			);
+			path = ProgressSubViews;
+			sourceTree = "<group>";
+		};
 		6EB48CAF29CB480100A44175 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +208,7 @@
 		6EFCBB3529C0B42300EDBB79 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				6EA7E2CD29DC692900E58D1E /* ProgressSubViews */,
 				6EB48CCD29D22E6100A44175 /* StepView */,
 				6EB48CBA29CB537200A44175 /* GoalView */,
 				6EB48CB729CB533500A44175 /* JournalView */,
@@ -297,6 +311,8 @@
 				6EB48CBC29CB538F00A44175 /* GoalViewFunctions.swift in Sources */,
 				6EB48C6129C8A60700A44175 /* DataController.swift in Sources */,
 				6EFCBB3829C0C64C00EDBB79 /* CircleProgressBar.swift in Sources */,
+				6EA7E2CA29DC65E000E58D1E /* SliderView.swift in Sources */,
+				6EA7E2CC29DC674500E58D1E /* StepListView.swift in Sources */,
 				6E67063229B641B10011A30F /* PersonalCapstoneApp.swift in Sources */,
 				6EFCBAF529BA47C100EDBB79 /* JournalView.swift in Sources */,
 				6EB48CB929CB535300A44175 /* JournalViewFunctions.swift in Sources */,
