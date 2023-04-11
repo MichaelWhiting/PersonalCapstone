@@ -14,7 +14,7 @@ extension CreateGoalView {
                 goal.title = titleStr
                 goal.goalDescription = descriptionStr
                 goal.progress = Double(progress)
-                
+                goal.creationDate = Date()
                 updateProgress(for: goal)
                 
                 if goal.progress == 100 {

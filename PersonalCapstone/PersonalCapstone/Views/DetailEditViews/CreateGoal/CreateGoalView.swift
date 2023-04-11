@@ -107,7 +107,6 @@ struct CreateGoalView: View {
                 alignment: .top
             )
             .background(colorScheme == .light ? Color.secondaryWhite : Color.black)
-            
             GeometryReader { reader in
                 Color.primaryColor
                     .frame(height: reader.safeAreaInsets.top, alignment: .top)

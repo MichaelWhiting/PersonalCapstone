@@ -72,6 +72,10 @@ extension CreateStepView {
                 newStep.stepNum = stepsToAdd.count
                 
                 stepsToAdd.append(newStep)
+                
+                withAnimation {
+                    presentStepCreate.toggle()
+                }
             }
         }
     }

@@ -20,7 +20,7 @@ struct StepView: View {
                 step.isComplete.toggle()
                 try? moc.save()
             } label: {
-                Image(systemName: step.isComplete ? "checkmark.circle.fill" : "checkmark.circle")
+                Image(systemName: step.isComplete ? "checkmark.circle.fill" : "x.circle")
             }            
         }
     }

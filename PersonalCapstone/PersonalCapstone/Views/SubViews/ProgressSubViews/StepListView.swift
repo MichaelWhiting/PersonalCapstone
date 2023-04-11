@@ -50,8 +50,14 @@ struct StepListView: View {
                         }
                     }
                 } else {
+                    if stepsToAdd.isEmpty {
+                      Spacer()
+                    }
                     ForEach(stepsToAdd, id: \.self) { step in
                         StepView(step: step)
+                    }
+                    .onDelete { indexSet in
+                        stepsToAdd.remove(atOffsets: indexSet)
                     }
                 }
             }

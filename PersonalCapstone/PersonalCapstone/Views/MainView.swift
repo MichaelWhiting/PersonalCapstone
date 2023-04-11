@@ -15,8 +15,8 @@ struct MainView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.progress, order: .reverse)]) var goals: FetchedResults<Goal>
-    @FetchRequest(sortDescriptors: []) var entries: FetchedResults<Entry>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.creationDate, order: .reverse)]) var goals: FetchedResults<Goal>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.createdDate, order: .reverse)]) var entries: FetchedResults<Entry>
     
     @State private var goalsRefreshID = UUID()
     @State private var journalsRefreshID = UUID()
@@ -115,7 +115,7 @@ struct MainView: View {
                       .ignoresSafeArea()
                  }
             }
-            .navigationTitle("Home")
+            .navigationTitle(selectedListType == "Goals" ? "Goals" : "Journal Entries")
             
             // MARK: Toolbar
             .toolbar {
