@@ -22,7 +22,6 @@ struct CreateGoalView: View {
     @State var progress: Float = 0.0
     
     @State var selectedProgressType = "Progress"
-    @State var goalSteps = [String]()
     @State var stepsToAdd = [Step]()
     
     var goal: Goal?
@@ -116,6 +115,9 @@ struct CreateGoalView: View {
         .onAppear {
             selectedProgressType = goal?.stepsArray.count ?? 0 > 0 ? "Steps" : "Slider"
         }
+//        .onTapGesture {
+//            self.hideKeyboard()
+//        }
         .navigationTitle(goal != nil ? "Edit Goal" : "Create Goal")
     }
 }

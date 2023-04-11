@@ -13,6 +13,7 @@ struct StepView: View {
     
     var body: some View {
         HStack {
+            Text("\(step.stepNum)")
             Text(step.title ?? "")
                 .font(.headline)
             Spacer()

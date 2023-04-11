@@ -77,6 +77,9 @@ struct CreateJournalView: View {
                     .ignoresSafeArea()
             }
         }
+//        .onTapGesture {
+//            self.hideKeyboard()
+//        }
         .navigationTitle(entry != nil ? "Edit Journal" : "Create Journal")
     }
 }

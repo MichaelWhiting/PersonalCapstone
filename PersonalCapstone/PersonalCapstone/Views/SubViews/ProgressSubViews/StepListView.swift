@@ -15,6 +15,8 @@ struct StepListView: View {
     
     @State var presentStepCreate = false
     @Binding var stepsToAdd: [Step]
+    
+    @State var newStepsArray: [Step] = []
 
     var body: some View {
         VStack(spacing: 10) {
@@ -46,8 +48,12 @@ struct StepListView: View {
                     .onDelete { indexSet in
                         for index in indexSet {
                             goal.removeFromSteps(goal.stepsArray[index])
+                            reorderSteps(goal: goal, from: nil, to: nil)
                             try? moc.save()
                         }
+                    }
+                    .onMove { from, to in
+                        reorderSteps(goal: goal, from: from, to: to)
                     }
                 } else {
                     if stepsToAdd.isEmpty {
@@ -58,12 +64,68 @@ struct StepListView: View {
                     }
                     .onDelete { indexSet in
                         stepsToAdd.remove(atOffsets: indexSet)
+                        reorderSteps(goal: nil, from: nil, to: nil)
+                    }
+                    .onMove { from, to in
+                        reorderSteps(goal: nil, from: from, to: to)
                     }
                 }
             }
             .scrollContentBackground(.hidden)
             Spacer()
             Spacer()
+        }
+    }
+}
+
+extension StepListView {
+    func reorderSteps(goal: Goal?, from: IndexSet?, to: Int?) {
+        if let goal {
+            if let from, let to {
+                newStepsArray = goal.stepsArray
+                newStepsArray.move(fromOffsets: from, toOffset: to)
+                goal.steps = []
+
+                for (i,step) in newStepsArray.enumerated() {
+                    step.stepNum = i
+                    goal.addToSteps(step)
+                }
+                
+                try? moc.save()
+            } else {
+                newStepsArray = goal.stepsArray
+                goal.steps = []
+
+                for (i,step) in newStepsArray.enumerated() {
+                    step.stepNum = i
+                    goal.addToSteps(step)
+                }
+                
+                try? moc.save()
+            }
+        } else {
+            if let from, let to {
+                newStepsArray = stepsToAdd
+                newStepsArray.move(fromOffsets: from, toOffset: to)
+                stepsToAdd = []
+                
+                for (i, step) in newStepsArray.enumerated() {
+                    step.stepNum = i
+                    stepsToAdd.append(step)
+                }
+                
+                try? moc.save()
+            } else {
+                newStepsArray = stepsToAdd
+                stepsToAdd = []
+                
+                for (i,step) in newStepsArray.enumerated() {
+                    step.stepNum = i
+                    stepsToAdd.append(step)
+                }
+                
+                try? moc.save()
+            }
         }
     }
 }
