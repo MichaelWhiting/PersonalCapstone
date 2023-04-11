@@ -20,6 +20,9 @@ struct CreateJournalView: View {
     @State var titleStr = ""
     @State var textStr = ""
     @State var relatedGoals: [Goal] = []
+    
+    @FocusState var isInputActive: Bool
+
         
     var entry: Entry?
     
@@ -44,6 +47,14 @@ struct CreateJournalView: View {
                             .foregroundColor(textColor)
                             .textFieldStyle(.roundedBorder)
                             .lineLimit(20)
+                            .focused($isInputActive)
+                            .toolbar {
+                                ToolbarItemGroup(placement: .keyboard) {
+                                    Button("Done") {
+                                        isInputActive = false
+                                    }
+                                }
+                            }
                     }
                     .padding(8)
                     
