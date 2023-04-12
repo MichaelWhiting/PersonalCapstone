@@ -50,6 +50,7 @@ struct CreateJournalView: View {
                             .focused($isInputActive)
                             .toolbar {
                                 ToolbarItemGroup(placement: .keyboard) {
+                                    Spacer()
                                     Button("Done") {
                                         isInputActive = false
                                     }
